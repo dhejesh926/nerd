@@ -1,0 +1,26 @@
+#!/usr/bin/env bash
+
+BLUE='\033[0;34m'
+GREEN='\033[0;32m'
+YELLOW='\033[1;33m'
+NC='\033[0m'
+
+echo -e "${BLUE}🎨 Nerd Font Glyph Picker${NC}"
+echo -e "${YELLOW}----------------------------${NC}\n"
+
+GLYPHS=$(jq -r 'to_entries[] | "\(.value.char)  \(.key)"' glyphnames.json)
+
+glyph=$(echo "$GLYPHS" | fzf \
+--prompt="🔍 Pick glyph > " \
+--height=100% \
+--border --reverse \
+--preview='echo {}')
+
+if [ -n "$glyph" ]; then
+    symbol=$(echo "$glyph" | awk '{print $1}')
+    echo -n "$symbol" | xclip -selection clipboard 2>/dev/null || \
+    echo -n "$symbol" | wl-copy 2>/dev/null || \
+    echo -n "$symbol" | pbcopy 2>/dev/null
+
+    echo -e "\n${GREEN}✅ Copied: $symbol${NC}"
+fi
