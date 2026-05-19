@@ -6,9 +6,9 @@ A tui based nerd glyph picker built using bash supported for linux and macos.
 Just type the name of the nerd glyph you are looking for, and press return key on the glyph, the glyph will be copied onto your clipboard.
 
 ## Prerequisites
-fzf(fuzzy finder)
-wl-copy(for wayland users)
-xclip(for x11 users)
-nerd font as your terminal font
+fzf(fuzzy finder),
+ wl-copy(for wayland users),
+ xclip(for x11 users),
+ any nerd font as your terminal font.
 
 ## Contributions are welcomed
